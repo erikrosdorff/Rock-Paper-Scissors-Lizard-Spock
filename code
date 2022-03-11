@@ -1,0 +1,38 @@
+import random
+
+
+
+def play ():
+    user = input("Choose 'r' for Rock, 'p' for Paper, 's' for Scissors, 'l' for Lizzard, 'm' for 'Mr.' Spock: ")
+    #Key is abbriviation and the value is the name of the item chosen by the computer
+    rpslm = {'r':'Rock', 'p':'Paper', 's':'Scissors', 'l':'Lizard', 'm':'Spock'}
+    computer = random.choice(list(rpslm.keys()))
+    
+    
+
+    if user == computer:
+        return f'Computer\'s choice was \'{computer}\'. It\'s a tie'
+    
+    #Scissors cuts Paper, Paper covers Rock, 
+    #Rock crushes Lizard, Lizard poisons Spock, Spock smashes Scissors
+    #Scissors decapitates Lizard, Lizard eats Paper, Paper disproves Spock,
+    #Spock vaporizes Rock, and as it always has, Rock crushes Scissors
+    
+    if is_win(user, computer):
+        return f'Computer\'s choice was \'{computer}\'. You Won!'
+    
+    return f'Computer\'s choice was \'{computer}\'. You lost'
+
+def is_win(player, opponent):
+    # return true if player wins
+    #s > p, p > r, r > l, l > m, m > s, 
+    # s > l, l > p, p > m, m > r, r > s.
+    if (player == 'p' and opponent == 'Rock' ) or (player == 'r' and opponent == 'Lizard') or \
+        (player == 'l' and opponent == 'Spock') or (player == 'm' and opponent == 'Scissors') or \
+        (player == 's' and opponent == 'Paper') or (player == 'p' and opponent == 'Spock') or \
+        (player == 'r' and opponent == 'Scissors') or (player == 'l' and opponent == 'Paper') or \
+        (player == 'm' and opponent == 'Rock'):
+            return True
+
+
+print(play())
